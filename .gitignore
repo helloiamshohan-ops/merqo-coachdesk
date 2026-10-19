@@ -1,0 +1,33 @@
+# Node dependencies and local build output
+node_modules/
+coverage/
+.nyc_output/
+
+# Local application data — never commit customer data
+var/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+
+# Local secrets and generated licensing material
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+license-output/
+recovery-output/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Generated release output
+artifacts/
+dist/
+build/

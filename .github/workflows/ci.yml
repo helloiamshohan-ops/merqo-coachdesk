@@ -1,0 +1,38 @@
+name: Development slice CI
+
+on:
+  push:
+    branches: [main, 'arena/**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  node-slice:
+    name: Node development slice (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Run syntax checks
+        run: npm run check
+      - name: Run tests
+        run: npm test
+
+  future-production-gates:
+    name: Future .NET/Windows gates (documented)
+    runs-on: ubuntu-latest
+    if: ${{ false }}
+    steps:
+      - run: echo "The production .NET/WPF job is intentionally disabled until the solution and approved toolchain are present."
